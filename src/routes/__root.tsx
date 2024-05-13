@@ -1,13 +1,13 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import { MainDashboard } from "~/components/shell/main-dashboard.tsx";
+import { MainDashboardShell } from "~/components/shell/main-dashboard-shell.tsx";
 
 export const Route = createRootRoute({
   component: () => (
     <>
-      <MainDashboard>
+      <MainDashboardShell>
         <Outlet />
-      </MainDashboard>
+      </MainDashboardShell>
       <TanStackRouterDevtools />
     </>
   ),
