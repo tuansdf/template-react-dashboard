@@ -4,3 +4,4 @@
 - calendars
 - rich text
 - dnd
+- authorization

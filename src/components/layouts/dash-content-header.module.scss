@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.start {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
