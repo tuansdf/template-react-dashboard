@@ -12,9 +12,9 @@ export const DashShell = ({ navbar, children }: Props) => {
 
   return (
     <AppShell
-      header={{ height: "var(--navbar-height)" }}
+      header={{ height: "var(--header-height)" }}
       navbar={{
-        width: 300,
+        width: "var(--navbar-width)",
         breakpoint: "md",
         collapsed: { mobile: !opened },
       }}

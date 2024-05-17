@@ -1,11 +1,12 @@
 :root {
   --screen-height: 100vh;
   --screen-height: 100svh;
-  --navbar-height: 3.75rem;
+  --header-height: 3.75rem;
+  --navbar-width: 18.75rem;
   --pagination-height: 2.25rem;
   --title-height: 3rem;
   --table-height: calc(
-    var(--screen-height) - var(--navbar-height) - var(--pagination-height) - var(--title-height) - 3rem
+    var(--screen-height) - var(--header-height) - var(--pagination-height) - var(--title-height) - 3rem
   );
 }
 
