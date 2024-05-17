@@ -1,4 +1,3 @@
-import { Title } from "@mantine/core";
 import { ReactNode } from "react";
 import classes from "./dash-content-header.module.scss";
 
@@ -12,7 +11,7 @@ export const DashContentHeader = ({ title, extraTitle, extraEnd }: Props) => {
   return (
     <header className={classes["container"]}>
       <div className={classes["start"]}>
-        <Title order={2}>{title}</Title>
+        <h2 className={classes["title"]}>{title}</h2>
         {extraTitle}
       </div>
 

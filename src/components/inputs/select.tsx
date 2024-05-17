@@ -1,4 +1,4 @@
-import { Select as MSelect, SelectProps } from "@mantine/core";
+import { Select as MSelect, SelectProps } from "antd";
 
 type Props = SelectProps;
 

@@ -40,11 +40,17 @@ export const SearchProvider = ({
   const formMethods = useForm({ defaultValues: defaultFormValues });
 
   const resetPage = () => {
+    resetPageSize();
+    resetPageNumber();
+  };
+  const resetPageNumber = () => {
     setPageNumberRaw(defaultContextValues.pageNumber);
+  };
+  const resetPageSize = () => {
     setPageSizeRaw(defaultContextValues.pageSize);
   };
   const setPageSize = (n: number) => {
-    setPageNumberRaw(defaultContextValues.pageNumber);
+    resetPageNumber();
     setPageSizeRaw(n);
   };
   const setPageNumber = (n: number) => {

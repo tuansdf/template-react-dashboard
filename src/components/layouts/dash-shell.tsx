@@ -1,35 +1,20 @@
-import { AppShell, Burger } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { Layout } from "antd";
 import { PropsWithChildren, ReactNode } from "react";
 import classes from "./dash-shell.module.scss";
 
 type Props = PropsWithChildren<{
-  navbar: ReactNode;
+  header: ReactNode;
+  sider: ReactNode;
 }>;
 
-export const DashShell = ({ navbar, children }: Props) => {
-  const [opened, { toggle }] = useDisclosure();
-
+export const DashShell = ({ header, sider, children }: Props) => {
   return (
-    <AppShell
-      header={{ height: "var(--header-height)" }}
-      navbar={{
-        width: "var(--navbar-width)",
-        breakpoint: "md",
-        collapsed: { mobile: !opened },
-      }}
-      padding="xs"
-    >
-      <AppShell.Header className={classes["header"]}>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
-        <div>Logo</div>
-      </AppShell.Header>
-
-      <AppShell.Navbar p="xs" className={classes["navbar"]}>
-        {navbar}
-      </AppShell.Navbar>
-
-      <AppShell.Main>{children}</AppShell.Main>
-    </AppShell>
+    <Layout className={classes["container"]} hasSider>
+      {sider}
+      <Layout>
+        {header}
+        <Layout.Content className={classes["content"]}>{children}</Layout.Content>
+      </Layout>
+    </Layout>
   );
 };

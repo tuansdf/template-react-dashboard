@@ -1,8 +1,7 @@
-import { ActionIcon, Button, Drawer, MultiSelect, TextInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconAdjustments } from "@tabler/icons-react";
+import { Button, Drawer, Form, Input, Select } from "antd";
 import { Controller, SubmitHandler, useFormContext } from "react-hook-form";
-import { Select } from "~/components/inputs/select.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 
 type FormValues = {
@@ -12,9 +11,9 @@ type FormValues = {
 };
 
 export const PostFilter = () => {
-  const [isDrawerLoading, drawerActions] = useDisclosure(false);
+  const [isDrawerOpen, drawerActions] = useDisclosure(false);
   const { setSearchQuery } = useSearchContext();
-  const { register, handleSubmit } = useFormContext<FormValues>();
+  const { control, handleSubmit } = useFormContext<FormValues>();
 
   const handleFormSubmit: SubmitHandler<FormValues> = (data) => {
     setSearchQuery(data);
@@ -22,60 +21,58 @@ export const PostFilter = () => {
 
   return (
     <>
-      <ActionIcon onClick={drawerActions.open}>
-        <IconAdjustments size="1rem" stroke={1.5} />
-      </ActionIcon>
+      <Button icon={<IconAdjustments size="1rem" stroke={1.5} />} onClick={drawerActions.open}></Button>
 
-      <Drawer
-        offset={8}
-        radius="md"
-        opened={isDrawerLoading}
-        onClose={drawerActions.close}
-        title="Filter"
-        position="right"
-      >
-        <form
-          onSubmit={handleSubmit(handleFormSubmit)}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-          }}
-        >
-          <TextInput {...register("title")} label="Title" placeholder="Input placeholder" />
-          <TextInput {...register("body")} label="Content" placeholder="Input placeholder" />
-          <Select
-            checkIconPosition="left"
-            data={["React", "Angular", "Svelte", "Vue"]}
-            label="Control check icon"
-            placeholder="Pick value"
-            defaultValue="React"
-          />
-          <Controller
-            name="favs"
-            render={({ field: { value, onChange } }) => {
-              return (
-                <MultiSelect
-                  value={value}
-                  onChange={onChange}
-                  label="Your favorite libraries"
-                  placeholder="Pick value"
-                  data={[
-                    {
-                      value: "1",
-                      label: "React",
-                    },
-                    {
-                      value: "2",
-                      label: "Angular",
-                    },
-                  ]}
-                />
-              );
-            }}
-          />
-          <Button type="submit">Search</Button>
-        </form>
+      <Drawer onClose={drawerActions.close} open={isDrawerOpen} title="Filter">
+        <Form layout="vertical" onSubmitCapture={handleSubmit(handleFormSubmit)}>
+          <Form.Item label="Title">
+            <Controller
+              control={control}
+              name="title"
+              render={({ field: { value, onChange } }) => {
+                return <Input type="text" value={value} onChange={onChange} />;
+              }}
+            />
+          </Form.Item>
+          <Form.Item label="Body">
+            <Controller
+              control={control}
+              name="body"
+              render={({ field: { value, onChange } }) => {
+                return <Input type="text" value={value} onChange={onChange} />;
+              }}
+            />
+          </Form.Item>
+          <Form.Item label="Favs">
+            <Controller
+              control={control}
+              name="favs"
+              render={({ field: { value, onChange } }) => {
+                return (
+                  <Select
+                    value={value}
+                    onChange={onChange}
+                    options={[
+                      {
+                        label: "A",
+                        value: "A",
+                      },
+                      {
+                        label: "B",
+                        value: "B",
+                      },
+                      {
+                        label: "C",
+                        value: "C",
+                      },
+                    ]}
+                  />
+                );
+              }}
+            />
+          </Form.Item>
+          <Button htmlType="submit">Search</Button>
+        </Form>
       </Drawer>
     </>
   );

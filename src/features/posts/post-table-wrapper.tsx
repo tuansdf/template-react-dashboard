@@ -1,5 +1,5 @@
-import { Alert, Loader } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
+import { Alert, Spin } from "antd";
 import { SearchPagination } from "~/components/search-pagination.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 import { PostTable } from "~/features/posts/post-table.tsx";
@@ -31,19 +31,17 @@ export const PostTableWrapper = () => {
   const data = dataQuery.data;
 
   return (
-    <>
+    <Spin spinning={dataQuery.isLoading}>
       {dataQuery.isLoading ? (
-        <Loader />
+        <></>
       ) : dataQuery.isError ? (
-        <Alert variant="light" color="red" title="Alert title">
-          No data
-        </Alert>
+        <Alert message="Alert title" />
       ) : (
         <>
           <PostTable data={data?.data || []} />
-          <SearchPagination total={data?.pages || 0} />
+          <SearchPagination total={data?.items || 0} />
         </>
       )}
-    </>
+    </Spin>
   );
 };
