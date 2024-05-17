@@ -1,8 +1,8 @@
-import { useDisclosure } from "@mantine/hooks";
 import { IconAdjustments } from "@tabler/icons-react";
 import { Button, Drawer, Form, Input, Select } from "antd";
 import { Controller, SubmitHandler, useFormContext } from "react-hook-form";
 import { useSearchContext } from "~/context/search-context.tsx";
+import { useDisclosure } from "~/hooks/use-toggle.tsx";
 
 type FormValues = {
   title?: string;
