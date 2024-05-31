@@ -87,6 +87,7 @@ export const RichTextEditor = ({
       <ReactQuill
         className={classes["quill"]}
         theme="snow"
+        placeholder="Nhập thông tin"
         // @ts-expect-error custom vars
         style={{ width: "100%", maxWidth: width, "--min-height": minHeight, "--max-height": maxHeight }}
         {...restProps}
