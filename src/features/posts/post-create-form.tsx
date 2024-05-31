@@ -8,8 +8,8 @@ import fclasses from "~/styles/form.module.scss";
 
 type FormValues = {
   name?: string;
-  description?: string;
   code?: string;
+  description?: string;
 };
 
 export const PostCreateForm = () => {

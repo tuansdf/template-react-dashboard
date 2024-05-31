@@ -6,3 +6,4 @@
 - dnd
 - authorization
 - form validation
+- i18n
