@@ -1,7 +1,9 @@
 import { SettingOutlined } from "@ant-design/icons";
-import { Button, Drawer, Form } from "antd";
 import { SubmitHandler, useFormContext } from "react-hook-form";
-import { InputRHF, SelectRHF } from "~/components/helpers/form/input-rhf.tsx";
+import { Button } from "~/components/core/button.tsx";
+import { Drawer } from "~/components/core/drawer.tsx";
+import { Form } from "~/components/core/form/form.tsx";
+import { InputTextRHF, SelectRHF } from "~/components/helpers/form/input-rhf.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 import { useDisclosure } from "~/hooks/use-toggle.tsx";
 
@@ -25,9 +27,9 @@ export const PostFilter = () => {
       <Button icon={<SettingOutlined size={16} />} onClick={drawerActions.open}></Button>
 
       <Drawer onClose={drawerActions.close} open={isDrawerOpen} title="Filter">
-        <Form layout="vertical" onSubmitCapture={handleSubmit(handleFormSubmit)}>
-          <InputRHF controllerProps={{ control, name: "title" }} label="Title" />
-          <InputRHF controllerProps={{ control, name: "body" }} label="Body" />
+        <Form onSubmitCapture={handleSubmit(handleFormSubmit)}>
+          <InputTextRHF controllerProps={{ control, name: "title" }} label="Title" />
+          <InputTextRHF controllerProps={{ control, name: "body" }} label="Body" />
           <SelectRHF
             controllerProps={{ control, name: "favs" }}
             label="Favs"

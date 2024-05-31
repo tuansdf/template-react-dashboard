@@ -1,0 +1,29 @@
+.container {
+  --max-width: inherit;
+
+  max-width: var(--max-width);
+
+  .row-sm {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    column-gap: 1rem;
+  }
+
+  .row-md {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    column-gap: 1rem;
+  }
+
+  .row-lg {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    column-gap: 1rem;
+  }
+
+  .row-xl {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    column-gap: 1rem;
+  }
+}

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { Alert, Spin } from "antd";
+import { Alert } from "~/components/core/alert.tsx";
+import { Spin } from "~/components/core/spin.tsx";
 import { SearchPagination } from "~/components/helpers/form/search-pagination.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 import { PostTable } from "~/features/posts/post-table.tsx";

@@ -1,6 +1,7 @@
 import { BorderlessTableOutlined, FormOutlined, HomeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, MenuProps } from "antd";
+import { MenuProps } from "antd";
+import { Menu } from "~/components/core/menu.tsx";
 import { DashSider } from "~/components/layouts/dash-sider.tsx";
 
 const items: MenuProps["items"] = [

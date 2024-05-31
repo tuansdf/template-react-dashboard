@@ -85,7 +85,7 @@ export function CommonInputRHF<TFV extends FieldValues, TET extends ElementType>
   );
 }
 
-export function InputRHF<TFV extends FieldValues, TET extends ElementType = typeof Input>(
+export function InputTextRHF<TFV extends FieldValues, TET extends ElementType = typeof Input>(
   restProps: CommonInputProps<TFV, TET>,
 ) {
   return <CommonInputRHF component={Input} maxLength={255} {...restProps} />;

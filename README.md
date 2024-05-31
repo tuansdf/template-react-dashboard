@@ -5,3 +5,4 @@
 - rich text
 - dnd
 - authorization
+- form validation
