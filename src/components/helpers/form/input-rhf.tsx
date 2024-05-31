@@ -13,10 +13,10 @@ type CommonInputProps<TFV extends FieldValues, TET extends ElementType> = {
   showHelp?: boolean;
   showFormItem?: boolean;
   showMargin?: boolean;
+  valueField?: keyof ComponentProps<TET>;
   formItemProps?: FormItemProps;
   controllerProps: Omit<ControllerProps<TFV>, "render">;
   component?: TET;
-  inputType?: "input" | "checkbox" | "select";
 } & ComponentProps<TET>;
 
 export function CommonInputRHF<TFV extends FieldValues, TET extends ElementType>({
@@ -29,7 +29,7 @@ export function CommonInputRHF<TFV extends FieldValues, TET extends ElementType>
   component: Component,
   controllerProps: { rules, ...controllerProps },
   onChange: onChangeExternal,
-  inputType = "input",
+  valueField = "value",
   ...restProps
 }: CommonInputProps<TFV, TET>) {
   const id = useId();
@@ -59,13 +59,10 @@ export function CommonInputRHF<TFV extends FieldValues, TET extends ElementType>
       {...restProps}
       id={id}
       onChange={(...params: IGNORE[]) => {
-        // @ts-ignore
         onChangeExternal?.(...params);
-        // @ts-ignore
         return onChange(...params);
       }}
-      value={inputType === "input" || inputType === "select" ? value : undefined}
-      checked={inputType === "checkbox" ? value : undefined}
+      {...{ [valueField]: value }}
     />
   );
 
@@ -118,7 +115,6 @@ export function SelectRHF<TFV extends FieldValues, TET extends ElementType = typ
       allowClear
       showSearch
       placeholder="Chọn"
-      inputType="select"
       filterOption={(input: IGNORE, option: IGNORE) =>
         (String(option?.label) ?? "").toLowerCase().includes(input.toLowerCase())
       }
@@ -169,7 +165,7 @@ export function CheckboxRHF<TFV extends FieldValues, TET extends ElementType = t
       {...restProps}
       showFormItem={false}
       children={restProps.label}
-      inputType="checkbox"
+      valueField="checked"
       status={undefined}
       onBlur={undefined}
       placeholder={undefined}

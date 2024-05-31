@@ -1,9 +1,9 @@
 # TODO
 
 - charts
-- calendars
+- calendars: custom?
 - rich text
-- dnd
-- authorization
-- form validation
+- dnd: kanban
+- authorization: menu + routes
+- form validation: zod
 - i18n
