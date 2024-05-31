@@ -1,3 +1,4 @@
+import { BorderlessTableOutlined, HomeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, MenuProps } from "antd";
 import { DashSider } from "~/components/layouts/dash-sider.tsx";
@@ -5,6 +6,7 @@ import { DashSider } from "~/components/layouts/dash-sider.tsx";
 const items: MenuProps["items"] = [
   {
     key: "/",
+    icon: <HomeOutlined />,
     label: (
       <Link search="" to="/">
         Home
@@ -13,6 +15,7 @@ const items: MenuProps["items"] = [
   },
   {
     key: "/about",
+    icon: <MoreOutlined />,
     label: (
       <Link search="" to="/about">
         About
@@ -21,6 +24,7 @@ const items: MenuProps["items"] = [
   },
   {
     key: "/table-filter-pagination",
+    icon: <BorderlessTableOutlined />,
     label: (
       <Link search="" to="/table-filter-pagination">
         Table filter pagination

@@ -1,6 +1,7 @@
 import { SettingOutlined } from "@ant-design/icons";
-import { Button, Drawer, Form, Input, Select } from "antd";
-import { Controller, SubmitHandler, useFormContext } from "react-hook-form";
+import { Button, Drawer, Form } from "antd";
+import { SubmitHandler, useFormContext } from "react-hook-form";
+import { InputRHF, SelectRHF } from "~/components/inputs/input-rhf.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 import { useDisclosure } from "~/hooks/use-toggle.tsx";
 
@@ -25,52 +26,26 @@ export const PostFilter = () => {
 
       <Drawer onClose={drawerActions.close} open={isDrawerOpen} title="Filter">
         <Form layout="vertical" onSubmitCapture={handleSubmit(handleFormSubmit)}>
-          <Form.Item label="Title">
-            <Controller
-              control={control}
-              name="title"
-              render={({ field: { value, onChange } }) => {
-                return <Input type="text" value={value} onChange={onChange} />;
-              }}
-            />
-          </Form.Item>
-          <Form.Item label="Body">
-            <Controller
-              control={control}
-              name="body"
-              render={({ field: { value, onChange } }) => {
-                return <Input type="text" value={value} onChange={onChange} />;
-              }}
-            />
-          </Form.Item>
-          <Form.Item label="Favs">
-            <Controller
-              control={control}
-              name="favs"
-              render={({ field: { value, onChange } }) => {
-                return (
-                  <Select
-                    value={value}
-                    onChange={onChange}
-                    options={[
-                      {
-                        label: "A",
-                        value: "A",
-                      },
-                      {
-                        label: "B",
-                        value: "B",
-                      },
-                      {
-                        label: "C",
-                        value: "C",
-                      },
-                    ]}
-                  />
-                );
-              }}
-            />
-          </Form.Item>
+          <InputRHF controllerProps={{ control, name: "title" }} label="Title" />
+          <InputRHF controllerProps={{ control, name: "body" }} label="Body" />
+          <SelectRHF
+            controllerProps={{ control, name: "favs" }}
+            label="Favs"
+            options={[
+              {
+                label: "A",
+                value: "A",
+              },
+              {
+                label: "B",
+                value: "B",
+              },
+              {
+                label: "C",
+                value: "C",
+              },
+            ]}
+          />
           <Button htmlType="submit">Search</Button>
         </Form>
       </Drawer>
