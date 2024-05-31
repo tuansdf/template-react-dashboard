@@ -1,4 +1,4 @@
-import { BorderlessTableOutlined, HomeOutlined, MoreOutlined } from "@ant-design/icons";
+import { BorderlessTableOutlined, FormOutlined, HomeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, MenuProps } from "antd";
 import { DashSider } from "~/components/layouts/dash-sider.tsx";
@@ -31,6 +31,15 @@ const items: MenuProps["items"] = [
       </Link>
     ),
   },
+  {
+    key: "/create-form",
+    icon: <FormOutlined />,
+    label: (
+      <Link search="" to="/create-form">
+        Create form
+      </Link>
+    ),
+  },
 ];
 
 export const RootDashSider = () => {
@@ -38,7 +47,7 @@ export const RootDashSider = () => {
 
   return (
     <DashSider>
-      <Menu mode="inline" defaultSelectedKeys={["4"]} items={items} selectedKeys={[location.pathname]} />
+      <Menu mode="inline" items={items} selectedKeys={[location.pathname]} />
     </DashSider>
   );
 };

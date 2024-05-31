@@ -2,7 +2,7 @@ import { message, Spin } from "antd";
 import { MutableRefObject, useEffect, useMemo, useState } from "react";
 import "quill/dist/quill.snow.css";
 import ReactQuill, { ReactQuillProps } from "react-quill";
-import classes from "./RichTextEditor.module.scss";
+import classes from "./rich-text-editor.module.scss";
 
 export type RichTextEditorProps = {
   quillRef: MutableRefObject<ReactQuill | null>;
@@ -68,8 +68,8 @@ export const RichTextEditor = ({
 
             const imageUrl = response.fileUrl;
             const range = quillRef.current?.getEditor().getSelection();
-            // @ts-ignore
-            quillRef.current.getEditor().insertEmbed(range?.index, "image", imageUrl);
+            // @ts-expect-error ignore
+            quillRef.current?.getEditor().insertEmbed(range?.index, "image", imageUrl);
           } else {
             message.error("Upload file thất bại");
           }
@@ -87,7 +87,7 @@ export const RichTextEditor = ({
       <ReactQuill
         className={classes["quill"]}
         theme="snow"
-        // @ts-ignore
+        // @ts-expect-error custom vars
         style={{ width: "100%", maxWidth: width, "--min-height": minHeight, "--max-height": maxHeight }}
         {...restProps}
         ref={quillRef}

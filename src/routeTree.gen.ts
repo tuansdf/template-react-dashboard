@@ -19,6 +19,7 @@ import { Route as rootRoute } from './routes/__root'
 const TableFilterPaginationLazyImport = createFileRoute(
   '/table-filter-pagination',
 )()
+const CreateFormLazyImport = createFileRoute('/create-form')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -30,6 +31,11 @@ const TableFilterPaginationLazyRoute = TableFilterPaginationLazyImport.update({
 } as any).lazy(() =>
   import('./routes/table-filter-pagination.lazy').then((d) => d.Route),
 )
+
+const CreateFormLazyRoute = CreateFormLazyImport.update({
+  path: '/create-form',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/create-form.lazy').then((d) => d.Route))
 
 const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
@@ -46,14 +52,30 @@ const IndexLazyRoute = IndexLazyImport.update({
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/create-form': {
+      id: '/create-form'
+      path: '/create-form'
+      fullPath: '/create-form'
+      preLoaderRoute: typeof CreateFormLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/table-filter-pagination': {
+      id: '/table-filter-pagination'
+      path: '/table-filter-pagination'
+      fullPath: '/table-filter-pagination'
       preLoaderRoute: typeof TableFilterPaginationLazyImport
       parentRoute: typeof rootRoute
     }
@@ -62,10 +84,39 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([
+export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AboutLazyRoute,
+  CreateFormLazyRoute,
   TableFilterPaginationLazyRoute,
-])
+})
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/",
+        "/about",
+        "/create-form",
+        "/table-filter-pagination"
+      ]
+    },
+    "/": {
+      "filePath": "index.lazy.tsx"
+    },
+    "/about": {
+      "filePath": "about.lazy.tsx"
+    },
+    "/create-form": {
+      "filePath": "create-form.lazy.tsx"
+    },
+    "/table-filter-pagination": {
+      "filePath": "table-filter-pagination.lazy.tsx"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
