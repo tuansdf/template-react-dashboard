@@ -3,7 +3,7 @@ import { Helmet, HelmetProvider as HelmetProviderM } from "react-helmet-async";
 
 type Props = PropsWithChildren;
 
-export const HelmetProvider = ({ children }: Props) => {
+export const HeadProvider = ({ children }: Props) => {
   return (
     <HelmetProviderM>
       <Helmet>

@@ -1,5 +1,5 @@
 import { TableProps } from "antd";
-import { Table } from "~/components/table.tsx";
+import { Table } from "~/components/core/table.tsx";
 import { Post } from "~/types/post.type.ts";
 
 type Props = {

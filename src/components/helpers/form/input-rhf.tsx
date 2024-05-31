@@ -1,7 +1,7 @@
 import { Checkbox, ColorPicker, DatePicker, Form, Input, InputNumber, Radio, Select, TimePicker } from "antd";
 import { ComponentProps, ElementType, ReactNode, useId } from "react";
 import { ControllerProps, FieldValues, useController } from "react-hook-form";
-import { FileUpload } from "./file-upload";
+import { FileUpload } from "~/components/core/form/file-upload.tsx";
 
 const defaultRequiredErrorMessage = "Vui lòng nhập trường bắt buộc";
 

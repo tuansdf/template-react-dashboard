@@ -1,7 +1,7 @@
 import { SettingOutlined } from "@ant-design/icons";
 import { Button, Drawer, Form } from "antd";
 import { SubmitHandler, useFormContext } from "react-hook-form";
-import { InputRHF, SelectRHF } from "~/components/inputs/input-rhf.tsx";
+import { InputRHF, SelectRHF } from "~/components/helpers/form/input-rhf.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 import { useDisclosure } from "~/hooks/use-toggle.tsx";
 

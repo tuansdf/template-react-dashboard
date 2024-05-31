@@ -2,7 +2,7 @@ import { message, Spin } from "antd";
 import { MutableRefObject, useEffect, useMemo, useState } from "react";
 import "quill/dist/quill.snow.css";
 import ReactQuill, { ReactQuillProps } from "react-quill";
-import classes from "./rich-text-editor.module.scss";
+import classes from "~/components/core/form/rich-text-editor.module.scss";
 
 export type RichTextEditorProps = {
   quillRef: MutableRefObject<ReactQuill | null>;

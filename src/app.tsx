@@ -1,5 +1,5 @@
 import { AntdProvider } from "~/lib/antd-provider.tsx";
-import { HelmetProvider } from "~/lib/helmet-provider.tsx";
+import { HeadProvider } from "~/lib/head-provider.tsx";
 import { QueryProvider } from "~/lib/query-provider.tsx";
 import { RouterProvider } from "~/lib/router-provider.tsx";
 
@@ -7,12 +7,12 @@ import "~/styles";
 
 export default function App() {
   return (
-    <HelmetProvider>
+    <HeadProvider>
       <AntdProvider>
         <QueryProvider>
           <RouterProvider />
         </QueryProvider>
       </AntdProvider>
-    </HelmetProvider>
+    </HeadProvider>
   );
 }

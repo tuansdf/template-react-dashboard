@@ -2,7 +2,7 @@ import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { Button, message, Modal, Spin, Upload } from "antd";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload";
 import { ReactNode, useRef, useState } from "react";
-import { MIME_TYPE, MimeType } from "~/constants/file.constant";
+import { MIME_TYPE, MimeType } from "~/constants/file.constant.ts";
 
 const DEFAULT_MIN_FILE_SIZE = 1_000;
 const DEFAULT_MAX_FILE_SIZE = 100_000_000;

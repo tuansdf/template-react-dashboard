@@ -1,6 +1,6 @@
-import { Pagination } from "~/components/pagination.tsx";
+import { Pagination } from "~/components/core/form/pagination.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
-import classes from "./search-pagination.module.scss";
+import classes from "~/components/helpers/form/search-pagination.module.scss";
 
 type Props = {
   total: number;

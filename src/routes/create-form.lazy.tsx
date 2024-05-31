@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { RichTextEditor } from "~/components/inputs/rich-text-editor.tsx";
+import { RichTextEditor } from "~/components/core/form/rich-text-editor.tsx";
 import { DashContentHeader } from "~/components/layouts/dash-content-header.tsx";
 import { useReactQuill } from "~/hooks/use-react-quill.tsx";
 

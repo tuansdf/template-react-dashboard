@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Alert, Spin } from "antd";
-import { SearchPagination } from "~/components/search-pagination.tsx";
+import { SearchPagination } from "~/components/helpers/form/search-pagination.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 import { PostTable } from "~/features/posts/post-table.tsx";
 import { CommonResponse } from "~/types/common.type.ts";
