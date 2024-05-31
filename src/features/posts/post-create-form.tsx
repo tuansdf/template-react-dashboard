@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "~/components/core/button.tsx";
-import { Form } from "~/components/core/form/form.tsx";
+import { Form, FormItem } from "~/components/core/form/form.tsx";
 import { RichTextEditor } from "~/components/core/form/rich-text-editor.tsx";
-import { CheckboxRHF, InputTextRHF, TextAreaRHF } from "~/components/helpers/form/input-rhf.tsx";
+import { InputTextRHF, TextAreaRHF } from "~/components/helpers/form/input-rhf.tsx";
 import { useReactQuill } from "~/hooks/use-react-quill.tsx";
 import fclasses from "~/styles/form.module.scss";
 
@@ -26,10 +26,11 @@ export const PostCreateForm = () => {
       <div className={fclasses["row-xl"]}>
         <InputTextRHF controllerProps={{ control, name: "name" }} label="Name" required />
         <InputTextRHF controllerProps={{ control, name: "code" }} label="Code" />
-        <CheckboxRHF controllerProps={{ control, name: "checkbox" }} label="Check">check</CheckboxRHF>
       </div>
       <TextAreaRHF controllerProps={{ control, name: "description" }} label="Description" />
-      <RichTextEditor quillRef={quillRef} />
+      <FormItem label="Content" required>
+        <RichTextEditor quillRef={quillRef} />
+      </FormItem>
       <Button htmlType="submit">Submit</Button>
     </Form>
   );

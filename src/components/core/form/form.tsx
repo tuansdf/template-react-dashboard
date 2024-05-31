@@ -6,3 +6,5 @@ type Props = PropsWithChildren<FormProps>;
 export const Form = (props: Props) => {
   return <FormM layout="vertical" {...props} />;
 };
+
+export const FormItem = FormM.Item;

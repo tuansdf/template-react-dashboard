@@ -7,3 +7,4 @@
 - authorization: menu + routes
 - form validation: zod
 - i18n
+- reactflow
