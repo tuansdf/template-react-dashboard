@@ -163,6 +163,7 @@ export function CheckboxRHF<TFV extends FieldValues, TET extends ElementType = t
       component={Checkbox}
       style={{ marginBottom: "1.5rem" }}
       {...restProps}
+      label={undefined}
       showFormItem={false}
       children={restProps.label}
       valueField="checked"
