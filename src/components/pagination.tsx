@@ -16,10 +16,12 @@ export const Pagination = ({ onPageNumberChange, onPageSizeChange, pageNumber, p
         current={pageNumber}
         pageSize={pageSize}
         showSizeChanger
-        onChange={(toPageNumber, toPageSize) => {
+        onShowSizeChange={(_, toPageSize) => {
           if (toPageSize !== pageSize) {
             onPageSizeChange(toPageSize);
           }
+        }}
+        onChange={(toPageNumber) => {
           if (toPageNumber !== pageNumber) {
             onPageNumberChange(toPageNumber);
           }

@@ -7,6 +7,7 @@ export const Table = (props: Props) => {
     <MTable
       size="small"
       pagination={false}
+      rowKey={(data) => data.id || data.key}
       scroll={{
         y: "var(--table-height)",
       }}

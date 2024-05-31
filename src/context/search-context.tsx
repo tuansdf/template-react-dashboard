@@ -26,40 +26,50 @@ const defaultContextValues: ContextValues = {
 const SearchContext = createContext<ContextValues>(defaultContextValues);
 
 type Props = PropsWithChildren<{
+  defaultPageNumber?: number;
+  defaultPageSize?: number;
   defaultFormValues?: DefaultValues<FieldValues>;
   defaultSearchValues?: SearchObject;
 }>;
 export const SearchProvider = ({
+  defaultPageNumber = defaultContextValues.pageNumber,
+  defaultPageSize = defaultContextValues.pageSize,
   defaultSearchValues = {},
   defaultFormValues = defaultSearchValues,
   children,
 }: Props) => {
-  const [pageNumber, setPageNumberRaw] = useState(() => defaultContextValues.pageNumber);
-  const [pageSize, setPageSizeRaw] = useState(() => defaultContextValues.pageSize);
+  const [pageNumber, setPageNumberRaw] = useState(() => defaultPageNumber);
+  const [pageSize, setPageSizeRaw] = useState(() => defaultPageSize);
   const [searchObject, setSearchObject] = useState<SearchObject>(() => defaultSearchValues);
   const formMethods = useForm({ defaultValues: defaultFormValues });
 
-  const resetPage = () => {
+  const resetPageNumber = useCallback(() => {
+    setPageNumberRaw(defaultPageNumber);
+  }, [setPageNumberRaw, defaultPageNumber]);
+  const resetPageSize = useCallback(() => {
+    setPageSizeRaw(defaultPageSize);
+  }, [setPageSizeRaw, defaultPageSize]);
+  const resetPage = useCallback(() => {
     resetPageSize();
     resetPageNumber();
-  };
-  const resetPageNumber = () => {
-    setPageNumberRaw(defaultContextValues.pageNumber);
-  };
-  const resetPageSize = () => {
-    setPageSizeRaw(defaultContextValues.pageSize);
-  };
-  const setPageSize = (n: number) => {
-    resetPageNumber();
-    setPageSizeRaw(n);
-  };
-  const setPageNumber = (n: number) => {
+  }, [resetPageNumber, resetPageSize]);
+  const setPageSize = useCallback(
+    (n: number) => {
+      resetPageNumber();
+      setPageSizeRaw(n);
+    },
+    [resetPageNumber],
+  );
+  const setPageNumber = useCallback((n: number) => {
     setPageNumberRaw(n);
-  };
-  const setSearchQuery = useCallback((data: SearchObject) => {
-    resetPage();
-    setSearchObject(data);
   }, []);
+  const setSearchQuery = useCallback(
+    (data: SearchObject) => {
+      resetPage();
+      setSearchObject(data);
+    },
+    [resetPage],
+  );
   const searchQuery = useMemo(() => {
     return toSearchString(searchObject);
   }, [searchObject]);

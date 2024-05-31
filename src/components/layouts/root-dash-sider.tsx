@@ -1,36 +1,40 @@
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, MenuProps } from "antd";
-import { createElement } from "react";
 import { DashSider } from "~/components/layouts/dash-sider.tsx";
 
 const items: MenuProps["items"] = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  AppstoreOutlined,
-  TeamOutlined,
-  ShopOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+  {
+    key: "/",
+    label: (
+      <Link search="" to="/">
+        Home
+      </Link>
+    ),
+  },
+  {
+    key: "/about",
+    label: (
+      <Link search="" to="/about">
+        About
+      </Link>
+    ),
+  },
+  {
+    key: "/table-filter-pagination",
+    label: (
+      <Link search="" to="/table-filter-pagination">
+        Table filter pagination
+      </Link>
+    ),
+  },
+];
 
 export const RootDashSider = () => {
+  const location = useLocation();
+
   return (
     <DashSider>
-      <Menu mode="inline" defaultSelectedKeys={["4"]} items={items} />
+      <Menu mode="inline" defaultSelectedKeys={["4"]} items={items} selectedKeys={[location.pathname]} />
     </DashSider>
   );
 };
