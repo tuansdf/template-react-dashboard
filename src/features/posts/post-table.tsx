@@ -1,4 +1,5 @@
-import { Table, TableProps } from "antd";
+import { TableProps } from "antd";
+import { Table } from "~/components/table.tsx";
 import { Post } from "~/types/post.type.ts";
 
 type Props = {
@@ -9,31 +10,25 @@ const columns: TableProps["columns"] = [
   {
     title: "ID",
     dataIndex: "id",
+    width: "5rem",
   },
   {
     title: "User ID",
     dataIndex: "userId",
+    width: "5rem",
   },
   {
     title: "title",
     dataIndex: "title",
+    width: "10rem",
   },
   {
     title: "body",
     dataIndex: "body",
+    width: "20rem",
   },
 ];
 
 export const PostTable = ({ data }: Props) => {
-  return (
-    <Table
-      size="small"
-      columns={columns}
-      dataSource={data}
-      pagination={false}
-      scroll={{
-        y: "var(--table-height)",
-      }}
-    />
-  );
+  return <Table columns={columns} dataSource={data} />;
 };

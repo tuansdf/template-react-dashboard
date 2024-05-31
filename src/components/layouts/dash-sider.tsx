@@ -10,7 +10,7 @@ export const DashSider = (props: Props) => {
     <Layout.Sider
       width="16rem"
       theme="light"
-      collapsedWidth="3.5rem"
+      collapsedWidth="3rem"
       collapsed={breakpoint === "sm"}
       collapsible
       trigger={null}

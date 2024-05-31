@@ -7,7 +7,9 @@ export const AntdProvider = ({ children }: Props) => {
   return (
     <ConfigProvider
       theme={{
-        token: {},
+        token: {
+          colorPrimary: "#22c55e",
+        },
       }}
     >
       {children}

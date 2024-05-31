@@ -1,4 +1,4 @@
-import { IconAdjustments } from "@tabler/icons-react";
+import { SettingOutlined } from "@ant-design/icons";
 import { Button, Drawer, Form, Input, Select } from "antd";
 import { Controller, SubmitHandler, useFormContext } from "react-hook-form";
 import { useSearchContext } from "~/context/search-context.tsx";
@@ -21,7 +21,7 @@ export const PostFilter = () => {
 
   return (
     <>
-      <Button icon={<IconAdjustments size="1rem" stroke={1.5} />} onClick={drawerActions.open}></Button>
+      <Button icon={<SettingOutlined size={16} />} onClick={drawerActions.open}></Button>
 
       <Drawer onClose={drawerActions.close} open={isDrawerOpen} title="Filter">
         <Form layout="vertical" onSubmitCapture={handleSubmit(handleFormSubmit)}>
