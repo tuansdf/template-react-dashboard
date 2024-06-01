@@ -3,7 +3,7 @@ import { SubmitHandler, useFormContext } from "react-hook-form";
 import { Button } from "~/components/core/button.tsx";
 import { Drawer } from "~/components/core/drawer.tsx";
 import { Form } from "~/components/core/form/form.tsx";
-import { InputTextRHF, SelectRHF } from "~/components/helpers/form/input-rhf.tsx";
+import { TextInputRHF, SelectRHF } from "~/components/helpers/form/input-rhf.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
 import { useDisclosure } from "~/hooks/use-toggle.tsx";
 
@@ -13,7 +13,7 @@ type FormValues = {
   favs?: string[];
 };
 
-export const PostFilter = () => {
+export const TaskFilter = () => {
   const [isDrawerOpen, drawerActions] = useDisclosure(false);
   const { setSearchQuery } = useSearchContext();
   const { control, handleSubmit } = useFormContext<FormValues>();
@@ -28,8 +28,8 @@ export const PostFilter = () => {
 
       <Drawer onClose={drawerActions.close} open={isDrawerOpen} title="Filter">
         <Form onSubmitCapture={handleSubmit(handleFormSubmit)}>
-          <InputTextRHF controllerProps={{ control, name: "title" }} label="Title" />
-          <InputTextRHF controllerProps={{ control, name: "body" }} label="Body" />
+          <TextInputRHF controllerProps={{ control, name: "title" }} label="Title" />
+          <TextInputRHF controllerProps={{ control, name: "body" }} label="Body" />
           <SelectRHF
             controllerProps={{ control, name: "favs" }}
             label="Favs"

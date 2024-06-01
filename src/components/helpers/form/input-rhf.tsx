@@ -82,19 +82,19 @@ export function CommonInputRHF<TFV extends FieldValues, TET extends ElementType>
   );
 }
 
-export function InputTextRHF<TFV extends FieldValues, TET extends ElementType = typeof Input>(
+export function TextInputRHF<TFV extends FieldValues, TET extends ElementType = typeof Input>(
   restProps: CommonInputProps<TFV, TET>,
 ) {
   return <CommonInputRHF component={Input} maxLength={255} {...restProps} />;
 }
 
-export function InputPasswordRHF<TFV extends FieldValues, TET extends ElementType = typeof Input.Password>(
+export function PasswordInputRHF<TFV extends FieldValues, TET extends ElementType = typeof Input.Password>(
   restProps: CommonInputProps<TFV, TET>,
 ) {
   return <CommonInputRHF component={Input.Password} {...restProps} />;
 }
 
-export function InputNumberRHF<TFV extends FieldValues, TET extends ElementType = typeof InputNumber>(
+export function NumberInputRHF<TFV extends FieldValues, TET extends ElementType = typeof InputNumber>(
   restProps: CommonInputProps<TFV, TET>,
 ) {
   return <CommonInputRHF component={InputNumber} {...restProps} />;

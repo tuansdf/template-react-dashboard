@@ -1,6 +1,6 @@
-export type Post = {
+export type Task = {
   id: number;
-  userId: number;
   title: string;
   body: string;
+  status: string;
 };

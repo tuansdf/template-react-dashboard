@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { Head } from "~/components/helpers/head.tsx";
 import { DashContentHeader } from "~/components/layouts/dash-content-header.tsx";
-import { PostCreateForm } from "~/features/posts/post-create-form.tsx";
+import { TaskCreateForm } from "~/features/tasks/task-create-form.tsx";
 
 export const Route = createLazyFileRoute("/form")({
   component: CreateFormPage,
@@ -9,9 +10,11 @@ export const Route = createLazyFileRoute("/form")({
 function CreateFormPage() {
   return (
     <>
+      <Head title="Form" />
+
       <DashContentHeader title="Create form" />
 
-      <PostCreateForm />
+      <TaskCreateForm />
     </>
   );
 }

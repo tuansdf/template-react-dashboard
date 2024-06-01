@@ -1,8 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Button } from "~/components/core/button.tsx";
-import { Form, FormItem } from "~/components/core/form/form.tsx";
-import { RichTextEditor } from "~/components/core/form/rich-text-editor.tsx";
-import { InputTextRHF, TextAreaRHF } from "~/components/helpers/form/input-rhf.tsx";
+import { Button, Form, FormItem, RichTextEditor } from "~/components/core";
+import { TextInputRHF, TextAreaRHF } from "~/components/helpers/form/input-rhf.tsx";
 import { useReactQuill } from "~/hooks/use-react-quill.tsx";
 import fclasses from "~/styles/form.module.scss";
 
@@ -13,7 +11,7 @@ type FormValues = {
   description?: string;
 };
 
-export const PostCreateForm = () => {
+export const TaskCreateForm = () => {
   const { quillRef } = useReactQuill();
   const { control, handleSubmit } = useForm<FormValues>();
 
@@ -24,8 +22,8 @@ export const PostCreateForm = () => {
   return (
     <Form className={fclasses["container"]} onSubmitCapture={handleSubmit(handleFormSubmit)}>
       <div className={fclasses["row-xl"]}>
-        <InputTextRHF controllerProps={{ control, name: "name" }} label="Name" required />
-        <InputTextRHF controllerProps={{ control, name: "code" }} label="Code" />
+        <TextInputRHF controllerProps={{ control, name: "name" }} label="Name" required />
+        <TextInputRHF controllerProps={{ control, name: "code" }} label="Code" />
       </div>
       <TextAreaRHF controllerProps={{ control, name: "description" }} label="Description" />
       <FormItem label="Content" required>

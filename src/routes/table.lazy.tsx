@@ -1,8 +1,9 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { Head } from "~/components/helpers/head.tsx";
 import { DashContentHeader } from "~/components/layouts/dash-content-header.tsx";
 import { SearchProvider } from "~/context/search-context.tsx";
-import { PostFilter } from "~/features/posts/post-filter.tsx";
-import { PostTable } from "~/features/posts/post-table.tsx";
+import { TaskFilter } from "~/features/tasks/task-filter.tsx";
+import { TaskTable } from "~/features/tasks/task-table.tsx";
 
 export const Route = createLazyFileRoute("/table")({
   component: TableFilterPaginationPage,
@@ -11,9 +12,11 @@ export const Route = createLazyFileRoute("/table")({
 function TableFilterPaginationPage() {
   return (
     <SearchProvider>
-      <DashContentHeader title="Posts" extraTitle={<PostFilter />} />
+      <Head title="Table" />
 
-      <PostTable />
+      <DashContentHeader title="Notes" extraTitle={<TaskFilter />} />
+
+      <TaskTable />
     </SearchProvider>
   );
 }

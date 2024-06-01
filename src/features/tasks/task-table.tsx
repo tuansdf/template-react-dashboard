@@ -5,9 +5,9 @@ import { Spin } from "~/components/core/spin.tsx";
 import { Table } from "~/components/core/table.tsx";
 import { SearchPagination } from "~/components/helpers/form/search-pagination.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
-import { posts } from "~/features/posts/post-data.ts";
+import { tasks } from "~/features/tasks/task-data.ts";
 
-const fetchPosts = async ({
+const fetchTasks = async ({
   pageNumber,
   pageSize,
   searchQuery,
@@ -19,7 +19,7 @@ const fetchPosts = async ({
   const search = new URLSearchParams(searchQuery);
   const title = search.get("title");
   const body = search.get("body");
-  const filteredPosts = posts.filter((post) => {
+  const filtered = tasks.filter((post) => {
     if (title && body) return post.title.includes(title) && post.body.includes(body);
     if (title) return post.title.includes(title);
     if (body) return post.body.includes(body);
@@ -27,15 +27,15 @@ const fetchPosts = async ({
   });
   const startIndex = (pageNumber - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  return { data: filteredPosts.slice(startIndex, endIndex), items: filteredPosts.length };
+  return { data: filtered.slice(startIndex, endIndex), items: filtered.length };
 };
 
-export const PostTable = () => {
+export const TaskTable = () => {
   const { pageNumber, pageSize, searchQuery } = useSearchContext();
 
   const dataQuery = useQuery({
-    queryKey: ["posts", pageNumber, pageSize, searchQuery],
-    queryFn: () => fetchPosts({ pageNumber, pageSize, searchQuery }),
+    queryKey: ["tasks", pageNumber, pageSize, searchQuery],
+    queryFn: () => fetchTasks({ pageNumber, pageSize, searchQuery }),
   });
   const data = dataQuery.data;
 
@@ -44,7 +44,7 @@ export const PostTable = () => {
       {dataQuery.isLoading ? (
         <></>
       ) : dataQuery.isError ? (
-        <Alert message="Alert title" />
+        <Alert message="Something went wrong" />
       ) : (
         <>
           <Table columns={columns} dataSource={data?.data} />

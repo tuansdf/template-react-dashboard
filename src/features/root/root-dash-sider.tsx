@@ -1,5 +1,6 @@
 import {
   AreaChartOutlined,
+  BookOutlined,
   BorderlessTableOutlined,
   FormOutlined,
   HomeOutlined,
@@ -53,6 +54,15 @@ const items: MenuProps["items"] = [
     label: (
       <Link search="" to="/charts">
         Charts
+      </Link>
+    ),
+  },
+  {
+    key: "/dnd",
+    icon: <BookOutlined />,
+    label: (
+      <Link search="" to="/dnd">
+        DnD
       </Link>
     ),
   },
