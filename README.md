@@ -1,6 +1,6 @@
 # TODO
 
-- charts
+- charts: $1
 - calendars: custom?
 - rich text $1
 - dnd: kanban

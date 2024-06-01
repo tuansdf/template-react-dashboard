@@ -16,27 +16,23 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const TableFilterPaginationLazyImport = createFileRoute(
-  '/table-filter-pagination',
-)()
-const CreateFormLazyImport = createFileRoute('/create-form')()
+const TableLazyImport = createFileRoute('/table')()
+const FormLazyImport = createFileRoute('/form')()
 const ChartsLazyImport = createFileRoute('/charts')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const TableFilterPaginationLazyRoute = TableFilterPaginationLazyImport.update({
-  path: '/table-filter-pagination',
+const TableLazyRoute = TableLazyImport.update({
+  path: '/table',
   getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/table-filter-pagination.lazy').then((d) => d.Route),
-)
+} as any).lazy(() => import('./routes/table.lazy').then((d) => d.Route))
 
-const CreateFormLazyRoute = CreateFormLazyImport.update({
-  path: '/create-form',
+const FormLazyRoute = FormLazyImport.update({
+  path: '/form',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/create-form.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/form.lazy').then((d) => d.Route))
 
 const ChartsLazyRoute = ChartsLazyImport.update({
   path: '/charts',
@@ -78,18 +74,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChartsLazyImport
       parentRoute: typeof rootRoute
     }
-    '/create-form': {
-      id: '/create-form'
-      path: '/create-form'
-      fullPath: '/create-form'
-      preLoaderRoute: typeof CreateFormLazyImport
+    '/form': {
+      id: '/form'
+      path: '/form'
+      fullPath: '/form'
+      preLoaderRoute: typeof FormLazyImport
       parentRoute: typeof rootRoute
     }
-    '/table-filter-pagination': {
-      id: '/table-filter-pagination'
-      path: '/table-filter-pagination'
-      fullPath: '/table-filter-pagination'
-      preLoaderRoute: typeof TableFilterPaginationLazyImport
+    '/table': {
+      id: '/table'
+      path: '/table'
+      fullPath: '/table'
+      preLoaderRoute: typeof TableLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -101,8 +97,8 @@ export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AboutLazyRoute,
   ChartsLazyRoute,
-  CreateFormLazyRoute,
-  TableFilterPaginationLazyRoute,
+  FormLazyRoute,
+  TableLazyRoute,
 })
 
 /* prettier-ignore-end */
@@ -116,8 +112,8 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/about",
         "/charts",
-        "/create-form",
-        "/table-filter-pagination"
+        "/form",
+        "/table"
       ]
     },
     "/": {
@@ -129,11 +125,11 @@ export const routeTree = rootRoute.addChildren({
     "/charts": {
       "filePath": "charts.lazy.tsx"
     },
-    "/create-form": {
-      "filePath": "create-form.lazy.tsx"
+    "/form": {
+      "filePath": "form.lazy.tsx"
     },
-    "/table-filter-pagination": {
-      "filePath": "table-filter-pagination.lazy.tsx"
+    "/table": {
+      "filePath": "table.lazy.tsx"
     }
   }
 }

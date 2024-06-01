@@ -30,20 +30,20 @@ const items: MenuProps["items"] = [
     ),
   },
   {
-    key: "/table-filter-pagination",
+    key: "/table",
     icon: <BorderlessTableOutlined />,
     label: (
-      <Link search="" to="/table-filter-pagination">
-        Table filter pagination
+      <Link search="" to="/table">
+        Table
       </Link>
     ),
   },
   {
-    key: "/create-form",
+    key: "/form",
     icon: <FormOutlined />,
     label: (
-      <Link search="" to="/create-form">
-        Create form
+      <Link search="" to="/form">
+        Form
       </Link>
     ),
   },
