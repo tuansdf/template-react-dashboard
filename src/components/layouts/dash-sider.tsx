@@ -8,7 +8,7 @@ export const DashSider = (props: Props) => {
 
   return (
     <Layout.Sider
-      width="16rem"
+      width="18rem"
       theme="light"
       collapsedWidth="3rem"
       collapsed={breakpoint === "sm"}

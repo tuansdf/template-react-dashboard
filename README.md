@@ -2,7 +2,7 @@
 
 - charts
 - calendars: custom?
-- rich text
+- rich text $1
 - dnd: kanban
 - authorization: menu + routes
 - form validation: zod

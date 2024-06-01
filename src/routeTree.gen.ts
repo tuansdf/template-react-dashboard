@@ -20,6 +20,7 @@ const TableFilterPaginationLazyImport = createFileRoute(
   '/table-filter-pagination',
 )()
 const CreateFormLazyImport = createFileRoute('/create-form')()
+const ChartsLazyImport = createFileRoute('/charts')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -36,6 +37,11 @@ const CreateFormLazyRoute = CreateFormLazyImport.update({
   path: '/create-form',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/create-form.lazy').then((d) => d.Route))
+
+const ChartsLazyRoute = ChartsLazyImport.update({
+  path: '/charts',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/charts.lazy').then((d) => d.Route))
 
 const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
@@ -65,6 +71,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/charts': {
+      id: '/charts'
+      path: '/charts'
+      fullPath: '/charts'
+      preLoaderRoute: typeof ChartsLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/create-form': {
       id: '/create-form'
       path: '/create-form'
@@ -87,6 +100,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AboutLazyRoute,
+  ChartsLazyRoute,
   CreateFormLazyRoute,
   TableFilterPaginationLazyRoute,
 })
@@ -101,6 +115,7 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/about",
+        "/charts",
         "/create-form",
         "/table-filter-pagination"
       ]
@@ -110,6 +125,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/about": {
       "filePath": "about.lazy.tsx"
+    },
+    "/charts": {
+      "filePath": "charts.lazy.tsx"
     },
     "/create-form": {
       "filePath": "create-form.lazy.tsx"

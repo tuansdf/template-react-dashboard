@@ -1,4 +1,10 @@
-import { BorderlessTableOutlined, FormOutlined, HomeOutlined, MoreOutlined } from "@ant-design/icons";
+import {
+  AreaChartOutlined,
+  BorderlessTableOutlined,
+  FormOutlined,
+  HomeOutlined,
+  MoreOutlined,
+} from "@ant-design/icons";
 import { Link, useLocation } from "@tanstack/react-router";
 import { MenuProps } from "antd";
 import { Menu } from "~/components/core/menu.tsx";
@@ -38,6 +44,15 @@ const items: MenuProps["items"] = [
     label: (
       <Link search="" to="/create-form">
         Create form
+      </Link>
+    ),
+  },
+  {
+    key: "/charts",
+    icon: <AreaChartOutlined />,
+    label: (
+      <Link search="" to="/charts">
+        Charts
       </Link>
     ),
   },
