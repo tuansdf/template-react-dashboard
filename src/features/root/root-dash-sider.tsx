@@ -4,6 +4,7 @@ import {
   BorderlessTableOutlined,
   FormOutlined,
   HomeOutlined,
+  LineChartOutlined,
   MoreOutlined,
 } from "@ant-design/icons";
 import { Link, useLocation } from "@tanstack/react-router";
@@ -63,6 +64,15 @@ const items: MenuProps["items"] = [
     label: (
       <Link search="" to="/dnd">
         DnD
+      </Link>
+    ),
+  },
+  {
+    key: "/flow",
+    icon: <LineChartOutlined />,
+    label: (
+      <Link search="" to="/flow">
+        Flow
       </Link>
     ),
   },
