@@ -1,16 +1,5 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
-import { Head } from "~/components/helpers/head.tsx";
+import { createLazyFileRoute } from '@tanstack/react-router'
 
-export const Route = createLazyFileRoute("/about")({
-  component: AboutPage,
-});
-
-function AboutPage() {
-  return (
-    <>
-      <Head title="About" />
-
-      <div>About</div>
-    </>
-  );
-}
+export const Route = createLazyFileRoute('/about')({
+  component: () => <div>Hello /about!</div>
+})

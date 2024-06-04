@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { Chart } from "~/components/core/charts/echarts.tsx";
 import { Head } from "~/components/helpers/head.tsx";
+import { useAuthorizeRoute } from "~/features/auth/auth.context.tsx";
 
 export const Route = createLazyFileRoute("/charts")({
   component: ChartsPage,
@@ -8,6 +9,8 @@ export const Route = createLazyFileRoute("/charts")({
 
 // https://dev.to/manufac/using-apache-echarts-with-react-and-typescript-optimizing-bundle-size-29l8
 function ChartsPage() {
+  useAuthorizeRoute("CHARTS", "/");
+
   return (
     <>
       <Head title="Charts" />

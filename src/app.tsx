@@ -1,3 +1,4 @@
+import { AuthProvider } from "~/features/auth/auth.context.tsx";
 import { AntdProvider } from "~/lib/antd-provider.tsx";
 import { HeadProvider } from "~/lib/head-provider.tsx";
 import { QueryProvider } from "~/lib/query-provider.tsx";
@@ -10,7 +11,9 @@ export default function App() {
     <HeadProvider>
       <AntdProvider>
         <QueryProvider>
-          <RouterProvider />
+          <AuthProvider>
+            <RouterProvider />
+          </AuthProvider>
         </QueryProvider>
       </AntdProvider>
     </HeadProvider>
