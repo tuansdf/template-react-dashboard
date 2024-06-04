@@ -1,6 +1,7 @@
-import { useDraggable, useDroppable } from "@dnd-kit/core";
+import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { CSSProperties } from "react";
+import { Card } from "~/components/core/card.tsx";
 import classes from "./task-lane-item.module.scss";
 
 type Props = {
@@ -15,30 +16,28 @@ export const TaskLaneItem = ({ id, title, content }: Props) => {
     listeners,
     transform,
     setNodeRef: setDragNodeRef,
-  } = useDraggable({
-    id,
-  });
-  const { setNodeRef: setDropNodeRef } = useDroppable({
+    transition,
+    isDragging,
+  } = useSortable({
     id,
   });
 
   const styles: CSSProperties = {
     transform: CSS.Transform.toString(transform),
+    transition,
   };
 
   return (
-    <div
-      className={classes["container"]}
-      style={{ ...styles, display: "inline-block", width: "max-content" }}
-      ref={(el) => {
-        setDropNodeRef(el);
-        setDragNodeRef(el);
-      }}
+    <Card
+      title={title}
+      size="small"
+      style={{ ...styles, opacity: isDragging ? "0.5" : undefined }}
+      ref={setDragNodeRef}
       {...listeners}
       {...attributes}
+      className={classes["container"]}
     >
-      <div>{title}</div>
-      <div>{content}</div>
-    </div>
+      {content}
+    </Card>
   );
 };

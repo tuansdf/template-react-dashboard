@@ -1,5 +1,6 @@
-import { DndContext, DndContextProps } from "@dnd-kit/core";
-import { useState } from "react";
+import { DndContext, DndContextProps, DragOverlay } from "@dnd-kit/core";
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { useMemo, useState } from "react";
 import { TaskLaneItem } from "~/features/tasks/task-lane-item.tsx";
 import { arrayToMove } from "~/utils/array.util.ts";
 import classes from "./task-lane.module.scss";
@@ -38,24 +39,23 @@ type Task = {
   content: string;
 };
 
-type Props = {
-  tasks: Task[];
-};
-
 export const TaskLane = () => {
+  const [activeId, setActiveId] = useState<number | string | undefined | null>(undefined);
   const [tasks, setTasks] = useState(allTasks);
 
+  const activeTask = useMemo(() => {
+    return tasks.find((item) => String(item.id) === String(activeId));
+  }, [activeId, tasks]);
+
   const handleDragStart: DndContextProps["onDragStart"] = (event) => {
-    console.log(event.active.id);
+    setActiveId(event.active.id);
   };
 
   const handleDragEnd: DndContextProps["onDragEnd"] = (event) => {
     const fromItem = event.active;
     const toItem = event.over;
-    if (!toItem || !fromItem) return;
     const fromIndex = tasks.findIndex((item) => item.id === fromItem.id);
-    const toIndex = tasks.findIndex((item) => item.id === toItem.id);
-    if (!fromIndex || !toIndex || fromIndex === toIndex) return;
+    const toIndex = tasks.findIndex((item) => item.id === toItem?.id);
     setTasks((prev) => {
       return arrayToMove(prev, fromIndex, toIndex);
     });
@@ -63,11 +63,23 @@ export const TaskLane = () => {
 
   return (
     <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-      <div className={classes["container"]}>
-        {tasks.map((item) => {
-          return <TaskLaneItem id={item.id} title={item.title} content={item.content} key={item.id} />;
-        })}
-      </div>
+      <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+        <div className={classes["container"]}>
+          {tasks.map((item) => {
+            return <TaskLaneItem id={item.id} title={item.title} content={item.content} key={item.id} />;
+          })}
+        </div>
+      </SortableContext>
+      <DragOverlay>
+        {!!activeId && !!activeTask && (
+          <TaskLaneItem
+            id={activeTask?.id || ""}
+            title={activeTask?.title}
+            content={activeTask.content}
+            key={activeTask.id}
+          />
+        )}
+      </DragOverlay>
     </DndContext>
   );
 };

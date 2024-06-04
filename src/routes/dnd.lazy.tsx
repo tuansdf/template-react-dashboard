@@ -1,7 +1,7 @@
 import { DndContext } from "@dnd-kit/core";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { Head } from "~/components/helpers/head.tsx";
-import KanbanBoard from "~/features/tasks/temp-task.tsx";
+import { TaskLane } from "~/features/tasks/task-lane.tsx";
 
 export const Route = createLazyFileRoute("/dnd")({
   component: Page,
@@ -13,7 +13,7 @@ function Page() {
       <Head title="Dnd" />
 
       <DndContext>
-        <KanbanBoard />
+        <TaskLane />
       </DndContext>
     </>
   );
