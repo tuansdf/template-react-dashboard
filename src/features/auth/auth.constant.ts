@@ -7,8 +7,6 @@ export const PERMISSION = {
   DELETE: 4,
 } as const;
 
-export const Permission = 1 | 2 | 3 | 4;
-
 export const MENU = {
   HOME: "HOME",
   ABOUT: "ABOUT",

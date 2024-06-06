@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { TableProps } from "antd";
-import { Alert } from "~/components/core/alert.tsx";
-import { Spin } from "~/components/core/spin.tsx";
 import { Table } from "~/components/core/table.tsx";
 import { SearchPagination } from "~/components/helpers/form/search-pagination.tsx";
 import { useSearchContext } from "~/context/search-context.tsx";
@@ -16,6 +14,7 @@ const fetchTasks = async ({
   pageSize: number;
   searchQuery: string;
 }) => {
+  await new Promise((r) => setTimeout(r, 300));
   const search = new URLSearchParams(searchQuery);
   const title = search.get("title");
   const body = search.get("body");
@@ -40,18 +39,10 @@ export const TaskTable = () => {
   const data = dataQuery.data;
 
   return (
-    <Spin spinning={dataQuery.isLoading}>
-      {dataQuery.isLoading ? (
-        <></>
-      ) : dataQuery.isError ? (
-        <Alert message="Something went wrong" />
-      ) : (
-        <>
-          <Table columns={columns} dataSource={data?.data} />
-          <SearchPagination total={data?.items || 0} />
-        </>
-      )}
-    </Spin>
+    <>
+      <Table columns={columns} dataSource={data?.data} loading={dataQuery.isLoading} />
+      <SearchPagination total={data?.items || 0} />
+    </>
   );
 };
 

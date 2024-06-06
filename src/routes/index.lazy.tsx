@@ -14,10 +14,11 @@ function IndexPage() {
   const { authObj, setAuthObj } = useAuthContext();
 
   const handleClick = () => {
+    const random = String(Math.floor(Math.random() * 1000));
     setAuthObj({
-      userId: String(Math.floor(Math.random() * 1000)),
-      username: "test-username",
-      token: "test-token",
+      userId: random,
+      username: "test-username-" + random,
+      token: "test-token-" + random,
       permissions: [PERMISSION.CREATE, PERMISSION.VIEW],
     });
   };
