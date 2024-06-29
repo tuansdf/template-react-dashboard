@@ -19,7 +19,7 @@ function IndexPage() {
       userId: random,
       username: "test-username-" + random,
       token: "test-token-" + random,
-      permissions: [PERMISSION.CREATE, PERMISSION.VIEW],
+      permissions: [PERMISSION.CREATE, PERMISSION.DELETE],
     });
   };
 

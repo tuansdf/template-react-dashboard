@@ -1,4 +1,4 @@
-import { LinkProps, Navigate } from "@tanstack/react-router";
+import { LinkProps, useNavigate } from "@tanstack/react-router";
 import { createContext, PropsWithChildren, useCallback, useContext, useMemo } from "react";
 import { AuthType, CommonSignals, MenuType, PermissionType, RouteType } from "~/features/auth/auth.type.ts";
 import {
@@ -10,7 +10,7 @@ import {
 } from "~/features/auth/auth.util.ts";
 import { useLocalStorage } from "~/hooks/use-local-storage.tsx";
 
-type ContextValues = {
+export type AuthContextValues = {
   authObj: AuthType | null;
   setAuthObj: (o: AuthType) => void;
   isAuth: boolean;
@@ -22,7 +22,7 @@ type ContextValues = {
   authorizeRoute: (a: RouteType) => boolean;
 };
 
-const AuthContext = createContext<ContextValues>({} as ContextValues);
+const AuthContext = createContext<AuthContextValues>({} as AuthContextValues);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [authObj, setAuthObj] = useLocalStorage<AuthType | null>({ key: "trd-auth", defaultValue: null });
@@ -93,9 +93,10 @@ export const useAuthContext = () => {
 };
 
 export const useAuthorizeRoute = (route: RouteType, to: LinkProps["to"]) => {
+  const navigate = useNavigate();
   const { authorizeRoute } = useAuthContext();
   const isAuth = useMemo(() => {
     return authorizeRoute(route);
   }, [authorizeRoute, route]);
-  if (!isAuth) return <Navigate to={to} />;
+  if (!isAuth) navigate({ to });
 };
