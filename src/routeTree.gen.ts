@@ -17,6 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const TableLazyImport = createFileRoute('/table')()
+const MotionLazyImport = createFileRoute('/motion')()
 const FormLazyImport = createFileRoute('/form')()
 const FlowLazyImport = createFileRoute('/flow')()
 const DndLazyImport = createFileRoute('/dnd')()
@@ -30,6 +31,11 @@ const TableLazyRoute = TableLazyImport.update({
   path: '/table',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/table.lazy').then((d) => d.Route))
+
+const MotionLazyRoute = MotionLazyImport.update({
+  path: '/motion',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/motion.lazy').then((d) => d.Route))
 
 const FormLazyRoute = FormLazyImport.update({
   path: '/form',
@@ -107,6 +113,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FormLazyImport
       parentRoute: typeof rootRoute
     }
+    '/motion': {
+      id: '/motion'
+      path: '/motion'
+      fullPath: '/motion'
+      preLoaderRoute: typeof MotionLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/table': {
       id: '/table'
       path: '/table'
@@ -126,6 +139,7 @@ export const routeTree = rootRoute.addChildren({
   DndLazyRoute,
   FlowLazyRoute,
   FormLazyRoute,
+  MotionLazyRoute,
   TableLazyRoute,
 })
 
@@ -143,6 +157,7 @@ export const routeTree = rootRoute.addChildren({
         "/dnd",
         "/flow",
         "/form",
+        "/motion",
         "/table"
       ]
     },
@@ -163,6 +178,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/form": {
       "filePath": "form.lazy.tsx"
+    },
+    "/motion": {
+      "filePath": "motion.lazy.tsx"
     },
     "/table": {
       "filePath": "table.lazy.tsx"

@@ -76,6 +76,15 @@ const items: MenuProps["items"] = [
       </Link>
     ),
   },
+  {
+    key: "/motion",
+    icon: <LineChartOutlined />,
+    label: (
+      <Link search="" to="/motion">
+        Motion
+      </Link>
+    ),
+  },
 ];
 
 export const RootDashSider = () => {
