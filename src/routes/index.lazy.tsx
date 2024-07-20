@@ -29,7 +29,13 @@ function IndexPage() {
 
       <div>
         <div>Home</div>
-        <Button onClick={handleClick}>Set auth</Button>
+        <Button onClick={handleClick} type="primary">
+          Set auth
+        </Button>
+        <Button type="default">ABC</Button>
+        <Button type="default" ghost>
+          DEF
+        </Button>
         <pre>{JSON.stringify(authObj, null, 2)}</pre>
       </div>
     </>

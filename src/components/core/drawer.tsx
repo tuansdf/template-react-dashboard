@@ -1,3 +1,17 @@
-import { Drawer as DrawerM } from "antd";
+import { Drawer as ADrawer, DrawerProps } from "antd";
+import classes from "./drawer.module.scss";
 
-export const Drawer = DrawerM;
+type Props = DrawerProps;
+
+export const Drawer = (props: Props) => {
+  return (
+    <ADrawer
+      {...props}
+      classNames={{
+        mask: classes["mask"],
+        content: classes["content"],
+        body: classes["body"],
+      }}
+    />
+  );
+};

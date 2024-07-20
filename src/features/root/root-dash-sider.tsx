@@ -3,7 +3,7 @@ import {
   BookOutlined,
   BorderlessTableOutlined,
   FormOutlined,
-  HomeOutlined,
+  HomeFilled,
   LineChartOutlined,
   MoreOutlined,
 } from "@ant-design/icons";
@@ -15,7 +15,7 @@ import { DashSider } from "~/components/layouts/dash-sider.tsx";
 const items: MenuProps["items"] = [
   {
     key: "/",
-    icon: <HomeOutlined />,
+    icon: <HomeFilled />,
     label: (
       <Link search="" to="/">
         Home

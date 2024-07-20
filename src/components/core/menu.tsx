@@ -1,3 +1,3 @@
-import { Menu as MenuM } from "antd";
+import { Menu as AMenu } from "antd";
 
-export const Menu = MenuM;
+export const Menu = AMenu;

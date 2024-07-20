@@ -1,3 +1,9 @@
-import { Button as ButtonM } from "antd";
+import { Button as AButton, ButtonProps } from "antd";
+import { cn } from "~/utils/classnames.ts";
+import classes from "./button.module.scss";
 
-export const Button = ButtonM;
+type Props = ButtonProps;
+
+export const Button = ({ className, ...props }: Props) => {
+  return <AButton className={cn(classes["container"], className)} {...props} />;
+};

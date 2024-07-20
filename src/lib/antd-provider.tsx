@@ -8,7 +8,19 @@ export const AntdProvider = ({ children }: Props) => {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#22c55e",
+          colorPrimary: "#12ad79",
+          borderRadius: 4,
+          motionUnit: 0.05,
+        },
+        components: {
+          Button: {
+            colorText: "#64748b",
+            defaultColor: "#12ad79",
+            defaultBorderColor: "#12ad79",
+            paddingInline: 20,
+            defaultGhostColor: "#12ad79",
+            defaultGhostBorderColor: "#12ad79",
+          },
         },
       }}
     >
