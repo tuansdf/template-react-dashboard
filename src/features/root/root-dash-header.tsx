@@ -121,7 +121,7 @@ export const RootDashHeader = () => {
         </div>
       </header>
 
-      <Drawer open={isNotificationsOpen} onClose={closeNotifications} title="Notifications">
+      <Drawer open={isNotificationsOpen} onClose={closeNotifications} title="Notifications" withPadding={false}>
         <Segmented
           options={[
             {
@@ -160,7 +160,7 @@ export const RootDashHeader = () => {
         </div>
       </Drawer>
 
-      <Drawer open={isSettingsOpen} onClose={closeSettings} title="Settings">
+      <Drawer open={isSettingsOpen} onClose={closeSettings} title="Settings" withPadding={false}>
         <div className={classes["notifications"]}>
           {notifications.map((item) => {
             return <Notification title={item.title} icon={item.icon} time={item.time} topic={item.topic} />;

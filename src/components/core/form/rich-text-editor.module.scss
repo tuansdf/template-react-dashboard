@@ -26,7 +26,7 @@
     height: 300px;
   }
   :global(.ql-editor) {
-    min-height: var(--min-height, 300px);
+    min-height: var(--min-height, 500px);
     max-height: var(--max-height, 700px);
     background: white;
   }
